@@ -6,7 +6,6 @@ from collections import deque
 import os
 
 newDataFile = "new_data.json"
-value = '["2016-06-24", 99.7]'
 
 def formJSON(value):
 
@@ -43,6 +42,5 @@ def formJSON(value):
             wNewDataFile.write(line)
         wNewDataFile.close()
     
-    #os.rename("new_data.json", "data.json")
-    #os.remove("new_data.json")
-formJSON(value)
+    os.remove("data.json")
+    os.rename("new_data.json", "data.json")

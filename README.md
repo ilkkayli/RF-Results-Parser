@@ -3,11 +3,26 @@
 Purpose:
 Used for gathering Robot Framework test results from Jenkins jobs and calculating overall pass rate.
 
-Prerequisities:
-Python
-Change the locPage-variable to the url where your Jenkins jobs are.
+Prerequisities/depedencies:
+Python 2.x
+MongoDB
+pip install falcon (requires: six, mimeparse)
+pip install waitress (a *.whl distribution)
+pip install pymongo
 Column named "Robot Results" added for every job on the web page.
 
-Funtionalities:
-Updates a log file that contains pass rate for a single date. One line per date.
-It is possible to schedule this script to be run by Windows Task Scheduler.
+Installation/configuration:
+1) Create a database called 'Test' with collection "firstcollection" on your MongoDB instance and make it run on localhost:27017 (the default port).
+	Note: that you can set db and collection names whatever you like, but they must be configured also on "app.py" on line 7.
+2) Create a working directory. You can use the C:\data\ -folder created by the MongoDB installation.
+3) Drop files "wsgisrv.py", "app.py", "resources.py", "formJSON.py", "main.py" and "data.json" to the working directory.
+4) Set the jenkins_url -variable on the "main.py"to the url where your Jenkins jobs are.
+
+Running:
+Start the WSGI-server in the command prompt: C:\python "C:\<path_to_working directory>\wsgisrv.py
+
+What is does?
+Retrieves test status information of Robot Framework tests from Jenkin and stores them in database. There is a 
+REST-interface with GET/POST/PUT/DELETE methods supported.
+Updates a *.json-file that contains test status information from last 10 days. This file is read by zingchart.js
+which creates nice graphs. 

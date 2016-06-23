@@ -1,15 +1,18 @@
 # RF-Results-Parser
+===================
 
-Purpose:
+Purpose
+-------
 Used for gathering Robot Framework test results from Jenkins jobs and calculating overall pass rate.
 
-Prerequisities/depedencies:
-Python 2.x
-MongoDB
-pip install falcon (requires: six, mimeparse)
-pip install waitress (a *.whl distribution)
-pip install pymongo
-Column named "Robot Results" added for every job on the web page.
+Prerequisities/depedencies
+--------------------------
+* Python 2.x
+* MongoDB
+* pip install falcon (requires: six, mimeparse)
+* pip install waitress (a *.whl distribution)
+* pip install pymongo
+* Column named "Robot Results" added for every job on the web page.
 
 Installation/configuration:
 1) Create a database called 'Test' with collection "firstcollection" on your MongoDB instance and make it run on localhost:27017 (the default port).

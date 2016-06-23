@@ -1,6 +1,6 @@
 # RF-Results-Parser
 
-## What is does?
+## What it does?
 
 Used for gathering Robot Framework test results from Jenkins jobs and calculating overall pass rate.
 Retrieves test status information of RF tests from Jenkins and stores them in a database. There is a 
@@ -41,7 +41,6 @@ which creates nice HTML graphs.
 	C:\python "C:\<path_to_working_dir>\wsgisrv.py"
 
 This starts the WSGI-server on localhost port 8888. That setting can be changed in `wsgisrv.py`
-
 2. Start http-server in any free address and port. Here is a node.js example with path where `index.html` is:
 	
 	C:\http-server C:\<path_to_working_dir>

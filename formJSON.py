@@ -21,6 +21,7 @@ def formJSON(value):
         queue = deque(queue)
         queue.popleft()
         queue.append(newValue)
+        fp.close()
 
     # Write data lines into a new file.
     with open('data.json', 'r+') as file_in:        
@@ -41,6 +42,6 @@ def formJSON(value):
             
             wNewDataFile.write(line)
         wNewDataFile.close()
-    
+        
     os.remove("data.json")
     os.rename("new_data.json", "data.json")

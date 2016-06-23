@@ -5,6 +5,7 @@ import datetime
 import formJSON
 import json
 import requests
+import os
 
 api_url =  "http://localhost:8888/" # URL to your REST API
 jenkins_url = "http://" # URL where your Robot Framework jobs are located on your Jenkins web page
@@ -47,18 +48,12 @@ def parseRobotResults():
     passRate = float(totalPassedTests) / float(totalTests) * 100
     passRate = str(passRate)
     
-    #write result on to the log file.  A one line per day.    
+    
+    # Checks if there already is a value in db for current date. If not, POST a new date:value pair. If yes, PUT existing values. 
     today =  str(datetime.date.today())        
     resultLine = today + "  :  " + passRate[:4] + "%" + "\n"
-    
-    '''if today not in open('Robot_results.txt').read():
-       with open('Robot_results.txt','a+') as robotResultsLog:
-        robotResultsLog.write(resultLine)'''
-    
     setJSONdata = "[" + '"' + today + '",' + passRate[:4] + "]"
     passRate = passRate[:4]
-
-    # Checks if there already is a value in db for current date. If not, POST a new date:value pair. If yes, PUT existing values. 
     values = ApiGET()
     value_updated = 1
     for key in values:
@@ -68,23 +63,12 @@ def parseRobotResults():
         if str(today) in new_value[1]:
             value_updated = 0
             ApiPUT(today, passRate)
+    # Create JSON dataset for ZingChart. This has to be written into a *.json file.           
     if value_updated == 1:
-        ApiPOST(today, passRate)        
-    
-    # Create JSON dataset for ZingChart. This has to be written into a *.json file.               
-    for key in values:
-        new_value = str(key)
-        new_value = new_value.split(',')
-        new_date = new_value[0].split(':')
-        zingchart_line = new_value[0] + ':' + new_value[1]
-        zingchart_line = zingchart_line.split(':')
-        zingchart_line = zingchart_line[1] + ',' + zingchart_line[3].replace("'","")
-        zingchart_line = zingchart_line.replace("'", '"')
-        zingchart_line = zingchart_line.replace('u', '')
-        zingchart_line = zingchart_line.replace(' "2', '["2')
-        zingchart_line = zingchart_line + "]"
-        formJSON.formJSON(zingchart_line)
-
+        ApiPOST(today, passRate)
+        value = '["' + today + '", ' + passRate + "]"
+        formJSON.formJSON(value)
+        
 # Function adds a new document on to the db collection  
 def ApiPOST(date, passRate):
    

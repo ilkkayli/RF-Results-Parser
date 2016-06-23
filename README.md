@@ -13,9 +13,9 @@ which creates nice HTML graphs.
 Prerequisities/depedencies
 --------------------------
 
-* `Python 2.x https://www.python.org/`
-* `MongoDB https://www.mongodb.com/`
-* `Falcon https://falconframework.org/` (requires: six, mimeparse)
+* `Python 2.x https://www.python.org/`__.
+* `MongoDB https://www.mongodb.com/`__.
+* `Falcon https://falconframework.org/`__. (requires: six, mimeparse)
 	
 .. code:: bash
 	

@@ -1,7 +1,6 @@
 # RF-Results-Parser
-===================
 
-What is does?
+## What is does?
 ------------
 
 Used for gathering Robot Framework test results from Jenkins jobs and calculating overall pass rate.
@@ -10,28 +9,24 @@ REST-interface with GET/POST/PUT/DELETE methods supported.
 Updates a *.json-file that contains test status information from last 10 days. This file is read by zingchart.js
 which creates nice HTML graphs. 
 
-Prerequisities/depedencies
+## Prerequisities/depedencies
 --------------------------
 
-* `Python 2.x https://www.python.org/`__.
-* `MongoDB https://www.mongodb.com/`__.
-* `Falcon https://falconframework.org/`__. (requires: six, mimeparse)
+* [Python 2.x] (https://www.python.org/)
+* [MongoDB] (https://www.mongodb.com/)
+* [Falcon] (https://falconframework.org/) (requires: six, mimeparse)
 	
-.. code:: bash
-	
-	pip install falcon
+	`pip install falcon`
 		
-* `Waitress http://docs.pylonsproject.org/projects/waitress/en/latest/`
+* [Waitress] (http://docs.pylonsproject.org/projects/waitress/en/latest/)
 
-* PyMongopip
-	
-.. code:: bash
-	
-	pip install pymongo
+* PyMongo
+
+	`pip install pymongo`
 	
 * Column named "Robot Results" added for every job on the Jenkins web page.
 
-Installation/configuration
+## Installation/configuration
 --------------------------
 
 1) Create a database called 'Test' with collection "firstcollection" on your MongoDB instance and make it run on localhost:27017 (the default port).
@@ -40,14 +35,12 @@ Installation/configuration
 3) Drop files "wsgisrv.py", "app.py", "resources.py", "formJSON.py", "main.py" and "data.json" to the working directory.
 4) Set the jenkins_url -variable on the "main.py"to the url where your Jenkins jobs are.
 
-Running
+## Running
 -------
 
 Start the WSGI-server in the command prompt: 
 
-.. code:: bash
-
 	C:\python "C:\<path_to_working directory>\wsgisrv.py
 
-Protips
+## Protips
 -------
